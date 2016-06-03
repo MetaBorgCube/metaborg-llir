@@ -9,7 +9,7 @@ imports
   Statements
 
 template options  
-  tokenize : ","
+  tokenize : ",()[]<>{}*"
 
 context-free start-symbols
   Start
