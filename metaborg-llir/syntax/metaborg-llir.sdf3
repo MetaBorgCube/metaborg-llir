@@ -1,4 +1,4 @@
-module LLIR
+module metaborg-llir
 
 imports
   Common
