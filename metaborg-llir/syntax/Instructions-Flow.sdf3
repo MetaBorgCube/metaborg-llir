@@ -18,7 +18,7 @@ context-free syntax
 
   Instruction.RET           = [ret [ReturnValue]]
   Instruction.BR            = [br [BranchTarget]]
-  Instruction.CALL          = [[CallOptimization?] call [FastMathFlags*] [CallingConvention?] [ParameterAttribute*] [Type] [PointerType?] [Value]([{FunctionArgument ","}*; text="arguments"]) [FunctionCallAttribute*]]
-  Instruction.SWITCH        = <switch <IntegerType> <Value>, label <Label> [ <SwitchTarget*> ]>
-  Instruction.INDIRECTBR    = <indirectbr <PointerType> <LocalLabel>, [ <{LabelTarget ","}*> ]>
+  Instruction.CALL          = [[CallOptimization?] call [{FastMathFlags " "}*; text="fast math flags"] [CallingConvention?] [{ParameterAttribute " "}*; text="return type attributes"] [Type] [PointerType?] [Value]([{FunctionArgument ","}*; text="arguments"]) [{FunctionCallAttribute " "}*; text="function call attributes"]]
+  Instruction.SWITCH        = <switch <IntegerType> <Value>, label <Label> [ <{SwitchTarget " "}*; text="switch targets"> ]>
+  Instruction.INDIRECTBR    = <indirectbr <PointerType> <LocalLabel>, [ <{LabelTarget ","}*; text="possible targets"> ]>
   Instruction.UNREACHABLE   = [unreachable]
