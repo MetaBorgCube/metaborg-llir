@@ -1,0 +1,42 @@
+module pp
+
+imports
+
+  libstratego-gpp
+  runtime/refactoring/-
+  pp/metaborg-llir-parenthesize
+  pp/metaborg-llir-pp
+
+rules
+
+  editor-format:
+    (node, _, ast, path, project-path) -> (filename, result)
+    with
+      ext      := <get-extension> path
+    ; filename := <guarantee-extension(|$[pp.[ext]])> path
+    ; result   := <pp-debug> node
+
+rules
+  
+  pp-metaborg-llir-string =
+    parenthesize-metaborg-llir
+    ; prettyprint-metaborg-llir-start-symbols
+    ; !V([], <id>)
+    ; box2text-string(|120)
+      
+  pp-partial-metaborg-llir-string =
+    parenthesize-metaborg-llir
+    ; prettyprint-metaborg-llir
+    ; !V([], <id>)
+    ; box2text-string(|120)
+      
+  pp-debug :
+    ast -> result
+    with
+       result := <pp-metaborg-llir-string> ast
+    <+ <bottomup(try(not(is-string); not(is-list); not(pp-metaborg-llir-string); debug(!"cannot pp ")))> ast
+    ;  result := ""
+
+rules
+  
+  construct-textual-change = construct-textual-change(pp-partial-metaborg-llir-string, parenthesize, override-reconstruction, resugar)

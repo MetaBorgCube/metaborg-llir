@@ -1,0 +1,19 @@
+module LLIR
+
+imports
+  Common
+  Types
+  Constants
+  Instructions
+  Expressions
+  Statements
+
+template options  
+  tokenize : ","
+
+context-free start-symbols
+  Start
+
+context-free syntax
+  Start = Module
+  Module.Module = <<{TopLevelStatement "\n"}*; text="statements">>

@@ -1,0 +1,11 @@
+module completion
+
+imports
+  
+  runtime/completion/-
+  completion/metaborg-llir-cp
+  pp
+  
+rules
+  
+  pp-completion = pp-partial-metaborg-llir-string

@@ -1,0 +1,35 @@
+module Instructions-Memory
+
+imports
+  Types
+  Constants
+  Expressions
+  Identifiers-Memory
+
+context-free syntax
+  NumElements.NumElements           = [[IntegerType] [Value]]
+  MaybeNumElements.MaybeNumElements = [, [NumElements]]
+
+  Index.Index                       = [[IntegerType] [Value]]
+  MaybeIndex.MaybeIndex             = [, [Index]]
+
+  Load.Load                         = [load [MemoryFlags*] [Type], [PointerType] [Value] [MaybeMemoryAlignment?]]
+  Load.AtomicLoad                   = [load atomic [MemoryFlags*] [Type], [PointerType] [Value] [AtomicFlags*] [AtomicOrdering], [MemoryAlignment]]
+
+  Store.Store                       = [store [MemoryFlags*] [Type] [Value], [PointerType] [Value] [MaybeMemoryAlignment*]]
+  Store.AtomicStore                 = [store atomic [MemoryFlags*] [Type] [Value], [PointerType] [Value] [AtomicFlags*] [AtomicOrdering], [MemoryAlignment]]
+  
+  
+  GetElementPtr.GetElementPtr       = [getelementptr [PointerFlags*] [Type], [PointerType] [Value] [MaybeIndex*]]
+  GetElementPtr.VectorElementPtr    = [getelementptr [Type], [VectorType] [Value], [VectorType] [Value]]
+
+  Instruction.ALLOCA                = [alloca [AllocFlags*] [Type] [MaybeNumElements?] [MaybeMemoryAlignment?]]
+
+  Instruction.LOAD                  = Load
+  Instruction.STORE                 = Store
+
+  Instruction.FENCE                 = [fence [AtomicFlags*] [AtomicOrdering]]
+  Instruction.CMPXCHG               = [cmpxchg [FailureFlags*] [MemoryFlags*] [PointerType] [Value], [Type] [Value], [Type] [Value] [AtomicFlags*] [AtomicOrdering] [AtomicOrdering]]
+  Instruction.ATOMICRMW             = [atomicrmw [MemoryFlags*] [AtomicOperation] [PointerType] [Value], [Type] [Value] [AtomicFlags*] [AtomicOrdering]]
+  
+  Instruction.GETELEMENTPTR         = GetElementPtr

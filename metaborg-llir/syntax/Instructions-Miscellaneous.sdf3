@@ -1,0 +1,13 @@
+module Instructions-Miscellaneous
+
+imports
+  Types
+  Expressions
+  Identifiers-Math
+
+context-free syntax
+  PhiTarget.PhiTarget = <[<Value>, <Label>]>
+
+  Instruction.ICMP    = [icmp [CompareType] [SingleValueType] [Value], [Value]]
+  Instruction.PHI     = [phi [Type] [{PhiTarget ","}+; text="targets"]]
+  Instruction.SELECT  = [select [Type] [Value], [Type] [Value], [Type] [Value]]

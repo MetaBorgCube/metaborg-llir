@@ -1,0 +1,25 @@
+module Identifiers-Math
+
+context-free syntax
+  WrapFlags.NoUnsignedWrap  = [nuw]
+  WrapFlags.NoSignedWrap    = [nsw]
+
+  PrecisionFlags.ExactFlag  = [exact]
+  
+  FastMathFlags.NNAN        = [nnan]
+  FastMathFlags.NINF        = [ninf]
+  FastMathFlags.NSZ         = [nsz]
+  FastMathFlags.ARCP        = [arcp]
+  FastMathFlags.FAST        = [fast]
+
+  CompareType.EQ            = [eq]
+  CompareType.NE            = [ne]
+  CompareType.UGT           = [ugt]
+  CompareType.UGE           = [uge]
+  CompareType.ULT           = [ult]
+  CompareType.ULE           = [ule]
+  CompareType.SGT           = [sgt]
+  CompareType.SGE           = [sge]
+  CompareType.SLT           = [slt]
+  CompareType.SLE           = [sle]
+  

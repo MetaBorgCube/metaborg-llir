@@ -1,0 +1,15 @@
+module Instructions-Conversion
+
+imports
+  Types
+  Expressions
+
+context-free syntax
+  Instruction.TRUNC         = [trunc [Type] [Value] to [Type]]
+  Instruction.ZEXT          = [zext [Type] [Value] to [Type]]
+  Instruction.SEXT          = [sext [Type] [Value] to [Type]]
+
+  Instruction.PTRTOINT      = [ptrtoint [Type] [Value] to [Type]]
+  Instruction.INTTOPTR      = [inttoptr [Type] [Value] to [Type]]
+  Instruction.BITCAST       = [bitcast [Type] [Value] to [Type]]
+  Instruction.ADDRSPACECAST = [addrspacecast [Type] [Value] to [Type]]

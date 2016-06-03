@@ -1,0 +1,37 @@
+module Constants
+
+imports
+  Common
+  Types
+
+context-free syntax
+  BooleanConstant.True                = [true]
+  BooleanConstant.False               = [false]
+
+  IntegerConstant.IntegerConstant     = INT
+  
+  NullConstant.NullConstant           = [null]
+  TokenConstant.TokenConstant         = [none]
+
+  StructureConstant.StructureConstant = [{ [{ConstantElement ","}*; text="members"] }]
+  
+  ArrayConstant.ArrayConstant         = <[ <{ConstantElement ","}*; text="members"> ]>
+  
+  VectorConstant.VectorConstant       = [< [{ConstantElement ","}*; text="members"] >]
+
+  StringConstant.StringConstant       = STRING
+
+  SimpleConstant.BooleanConstant      = BooleanConstant
+  SimpleConstant.IntegerConstant      = IntegerConstant
+  SimpleConstant.NullPointerConstant  = NullConstant
+  SimpleConstant.TokenConstant        = TokenConstant
+  
+  ConstantElement.ConstantElement     = [[Type] [Constant]]
+
+  ComplexConstant.StructureConstant   = StructureConstant
+  ComplexConstant.ArrayConstant       = ArrayConstant
+  ComplexConstant.VectorConstant      = VectorConstant
+
+  Constant.SimpleConstant             = SimpleConstant
+  Constant.ComplexConstant            = ComplexConstant
+  Constant.StringConstant             = StringConstant

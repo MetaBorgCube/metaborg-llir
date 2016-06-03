@@ -1,0 +1,75 @@
+; $ llc -filetype=obj -relocation-model=pic main.ir
+; $ gcc -o main main.ir.o
+; $ ./main; echo $?
+;
+; class C
+; {
+;     int a, b;
+;     public C(int n)
+;     {
+;         this.a = n;
+;         this.b = n;
+;     }
+;     public int foo(int n)
+;     {
+;         return this.a * this.b * n;
+;     }
+;     public static void main(String[] args)
+;     {
+;         C c = new C(5);
+;         System.out.println("result: " + c.foo(3))
+;     }
+; }
+
+declare i8*  @malloc(i64)
+declare void @free(i8*)
+declare i32  @printf(i8*, ...)
+
+
+%class.C = type { i32, i32, i32(%class.C*, i32)* }
+
+define %class.C* @class.C.new(i32 %n) {
+  %mem = call i8* @malloc(i64 16)
+  %cls = bitcast i8* %mem to %class.C*
+
+  %l1 = getelementptr %class.C* %cls, i32 0, i32 0
+  store i32 %n, i32* %l1
+  %l2 = getelementptr %class.C* %cls, i32 0, i32 1
+  store i32 %n, i32* %l2
+  %l3 = getelementptr %class.C* %cls, i32 0, i32 2
+  store i32(%class.C*, i32)* @class.C.foo, i32(%class.C*, i32)** %l3
+
+  ret %class.C* %cls
+}
+
+define void @class.C.delete(%class.C* %cls) {
+  %mem = bitcast %class.C* %cls to i8*
+  tail call void @free(i8* %mem)
+  ret void
+}
+
+define i32 @class.C.foo(%class.C* %cls, i32 %n) {
+  %ip = getelementptr %class.C* %cls, i32 0, i32 0
+  %i  = load i32* %ip
+  %jp = getelementptr %class.C* %cls, i32 0, i32 1
+  %j  = load i32* %jp
+
+  %r1 = mul i32 %n,  %i
+  %r2 = mul i32 %r1, %j
+  ret i32 %r2
+}
+
+
+@.format = private unnamed_addr constant [12 x i8] c"result: %d\0A\00"
+
+define i32 @main() {
+  %cls  = call %class.C* @class.C.new(i32 5)
+  %fptr = getelementptr %class.C* %cls, i32 0, i32 2
+  %func = load i32(%class.C*, i32)** %fptr
+  %val  = call i32 %func(%class.C* %cls, i32 3)
+  call void @class.C.delete(%class.C* %cls)
+
+  %msg = getelementptr [12 x i8]* @.format, i64 0, i64 0
+  call i32(i8*, ...)* @printf(i8* %msg, i32 %val)
+  ret i32 0
+}

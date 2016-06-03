@@ -1,0 +1,27 @@
+module Functions
+
+imports
+  Constants
+  Types
+  Expressions
+  Identifiers-Functions
+  Instructions
+
+context-free syntax
+  FunctionArgument.FunctionArgument          = [[FirstClassType] [Value]]
+  
+  FunctionParameterDecl.FunctionParameter    = [[FirstClassType] [ParameterAttribute]*]
+  FunctionParameterDecl.VariableParameter    = [...]
+
+  FunctionParameter.FunctionParameter        = [[FirstClassType] [Label] [ParameterAttribute]*]
+
+  ReturnValue.Value                          = [[FirstClassType] [Value]]
+  ReturnValue.Void                           = [void]
+  
+  ReturnType.Value                           = FirstClassType
+  ReturnType.Void                            = [void]
+
+  FunctionDeclaration.FunctionDeclaration    = [declare [LinkageType]? [Visibility]? [DLLStorageClass]? [CallingConvention]? [UnnamedAddress]? [ReturnType] [ParameterAttribute]* [Label]([{FunctionParameterDecl ","}*]) [FunctionAttribute]* [Alignment]? [GCStrategy]? [Prefix]? [Prologue]?]
+  FunctionDefinition.FunctionDefinition      = [define [LinkageType]? [Visibility]? [DLLStorageClass]? [CallingConvention]? [UnnamedAddress]? [ReturnType] [ParameterAttribute]* [Label]([{FunctionParameter ","}*]) [FunctionAttribute]* [Alignment]? [GCStrategy]? [Prefix]? [Prologue]? [Personality]? { [BasicBlock]* }]
+
+   

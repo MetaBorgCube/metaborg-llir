@@ -1,0 +1,15 @@
+ module Instructions-Aggregate
+ 
+ imports
+   Types
+   Constants
+   Expressions
+ 
+ context-free syntax
+   Instruction.EXTRACTELEMENT = [extractelement [VectorType] [Value], [IntegerType] [Value]]
+   Instruction.INSERTELEMENT  = [insertelement [VectorType] [Value], [IntegerType] [Value], [IntegerType] [Value]]
+   Instruction.SHUFFLEVECTOR  = [shufflevector [VectorType] [Value], [VectorType] [Value], [VectorType] [VectorConstant]]
+
+   Instruction.EXTRACTVALUE   = [extractvalue [AggregateType] [Value], [{IntegerConstant ","}+]]
+   Instruction.INSERTVALUE    = [insertvalue [AggregateType] [Value], [Type] [Value], [{IntegerConstant ","}+]]
+   

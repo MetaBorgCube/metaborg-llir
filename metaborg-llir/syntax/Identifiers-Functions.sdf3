@@ -1,0 +1,124 @@
+module Identifiers-Functions
+
+imports
+  Constants
+  Types
+  Expressions
+
+context-free syntax
+  CallingConvention.CCC                      = [ccc]
+  CallingConvention.FASTCC                   = [fastcc]
+  CallingConvention.COLDCCC                  = [coldcc]
+  CallingConvention.WEBKIT_JSCC              = [webkit_jscc]
+  CallingConvention.ANYREGCC                 = [anyregcc]
+  CallingConvention.PRESERVE_MOSTCC          = [preserve_mostcc]
+  CallingConvention.CXX_FAST_TLSCC           = [cxx_fast_tlscc]
+  CallingConvention.SWIFTCC                  = [swiftcc]
+  CallingConvention.Numbered                 = [cc [IntegerConstant]]
+  
+  Alignment.Alignment                        = [align [IntegerConstant]]
+
+  ParameterAttribute.ZEROEXT                 = [zeroext]
+  ParameterAttribute.SIGNEXT                 = [signext]
+  ParameterAttribute.INREG                   = [inreg]
+  ParameterAttribute.BYVAL                   = [byval]
+  ParameterAttribute.INALLOCA                = [inalloca]
+  ParameterAttribute.SRET                    = [sret]
+  ParameterAttribute.ALIGN                   = Alignment
+  ParameterAttribute.NOALIAS                 = [noalias]
+  ParameterAttribute.NOCAPTURE               = [nocapture]
+  ParameterAttribute.NEST                    = [nest]
+  ParameterAttribute.RETURNED                = [returned]
+  ParameterAttribute.NONNULL                 = [nonnull]
+  ParameterAttribute.DEREFERENCEABLE         = [dereferenceable([IntegerConstant])]
+  ParameterAttribute.DEREFERENCEABLE_OR_NULL = [dereferenceable_or_null([IntegerConstant])]
+  ParameterAttribute.SWIFTSELF               = [swiftself]
+  ParameterAttribute.SWIFTERROR              = [swifterror]
+
+  FunctionCallAttribute.NORETURN             = [noreturn]
+  FunctionCallAttribute.NOREWIND             = [nounwind]
+  FunctionCallAttribute.READONLY             = [readonly]
+  FunctionCallAttribute.READNONE             = [readnone]
+
+  AllocSizeElementsParameter.AllocSizeElementsParameter = [, [IntegerConstant]]
+
+  FunctionAttribute.ALIGNSTACK               = [alignstack([IntegerConstant])]
+  FunctionAttribute.ALLOCSIZE                = [allocsize([IntegerConstant][AllocSizeElementsParameter]?)]
+  FunctionAttribute.ALWAYSINLINE             = [alwaysinline]
+  FunctionAttribute.BUILTIN                  = [builtin]
+  FunctionAttribute.COLD                     = [cold]
+  FunctionAttribute.CONVERGENT               = [convergent]
+  FunctionAttribute.INACCESSIBLEMEMONLY      = [inaccessiblememonly]
+  FunctionAttribute.INACCESSIBLE_MEM_OR_ARGMEMONLY = [inaccessiblemem_or_argmemonly]
+  FunctionAttribute.INLINEHINT               = [inlinehint]
+  FunctionAttribute.JUMPTABLE                = [jumptable]
+  FunctionAttribute.MINSIZE                  = [minsize]
+  FunctionAttribute.NAKED                    = [naked]
+  FunctionAttribute.NOBUILTIN                = [nobuiltin]
+  FunctionAttribute.NODUPLICATE              = [noduplicate]
+  FunctionAttribute.NOIMPLICITFLOAT          = [noimplicitfloat]
+  FunctionAttribute.NOINLINE                 = [noinline]
+  FunctionAttribute.NONLAZYBIND              = [nonlazybind]
+  FunctionAttribute.NOREDZONE                = [noredzone]
+  FunctionAttribute.NORETURN                 = [noreturn]
+  FunctionAttribute.NORECURSE                = [norecurse]
+  FunctionAttribute.NOUNWIND                 = [nounwind]
+  FunctionAttribute.OPTNONE                  = [optnone]
+  FunctionAttribute.OPTSIZE                  = [optsize]
+  FunctionAttribute.PATCHABLE-FUNCTION       = ["patchable-function"=[StringConstant]]
+  FunctionAttribute.READNONE                 = [readnone]
+  FunctionAttribute.READONLY                 = [readonly]
+  FunctionAttribute.ARGMEMONLY               = [argmemonly]
+  FunctionAttribute.RETURNS_TWICE            = [returns_twice]
+  FunctionAttribute.SAFESTACK                = [safestack]
+  FunctionAttribute.SANITIZE_ADDRESS         = [sanitize_address]
+  FunctionAttribute.SANITIZE_THREAD          = [sanitize_thread]
+  FunctionAttribute.SSP                      = [ssp]
+  FunctionAttribute.SSPREQ                   = [sspreq]
+  FunctionAttribute.SSPSTRONG                = [sspstrong]
+  FunctionAttribute.THUNK                    = ["thunk"]
+  FunctionAttribute.UWTABLE                  = [uwtable]
+  
+  GCStrategy.GCStrategy                      = [gc [StringConstant]]
+
+  LinkageType.PRIVATE                        = [private]
+  LinkageType.INTERNAL                       = [internal]
+  LinkageType.AVAILABLE_EXTERNALLY           = [available_externally]
+  LinkageType.LINKONCE                       = [linkonce]
+  LinkageType.WEAK                           = [weak]
+  LinkageType.COMMON                         = [common]
+  LinkageType.APPENDING                      = [appending]
+  LinkageType.EXTERN_WEAK                    = [extern_weak]
+  LinkageType.LINKONCE_ODR                   = [linkonce_odr]
+  LinkageType.WEAK_ODR                       = [weak_odr]
+  LinkageType.EXTERNAL                       = [external]
+  
+  CallOptimization.Tail                      = [tail]
+  CallOptimization.MustTail                  = [musttail]
+  CallOptimization.NoTail                    = [notail]
+
+  Visibility.DEFAULT						 = [default]
+  Visibility.HIDDEN							 = [hidden]
+  Visibility.PROTECTED						 = [protected]
+  
+  DLLStorageClass.DLLIMPORT					 = [dllimport]
+  DLLStorageClass.DLLEXPORT					 = [dllexport]
+
+  UnnamedAddress.UNNAMED_ADDR                = [unnamed_addr]
+
+  Personality.Personality                    = [personality [Label]]
+
+  Prefix.Prefix                              = [prefix [Type] [Value]]
+  
+  Prologue.Prologue                          = [prologue [Type] [Value]]
+
+  TLSModel.LOCALDYNAMIC                      = [localdynamic]
+  TLSModel.INITIALEXEC                       = [initialexec]
+  TLSModel.LOCALEXEC                         = [localexec]
+
+  ThreadStorageModel.ThreadLocal             = [thread_local]
+  ThreadStorageModel.TLSModel                = [thread_local [TLSModel]]
+
+  AddressSpace.AddressSpace                  = [addressspace([IntegerConstant])]
+
+  ExternallyInitialized.EXTERNALLY_INITIALIZED = [externally_initialized]
