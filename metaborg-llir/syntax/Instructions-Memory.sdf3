@@ -13,23 +13,23 @@ context-free syntax
   Index.Index                       = [[IntegerType] [Value]]
   MaybeIndex.MaybeIndex             = [, [Index]]
 
-  Load.Load                         = [load [MemoryFlags*] [Type], [PointerType] [Value] [MaybeMemoryAlignment?]]
-  Load.AtomicLoad                   = [load atomic [MemoryFlags*] [Type], [PointerType] [Value] [AtomicFlags*] [AtomicOrdering], [MemoryAlignment]]
+  Load.Load                         = [load [{MemoryFlags " "}*; text="memory flags"] [Type], [PointerType] [Value] [MaybeMemoryAlignment?]]
+  Load.AtomicLoad                   = [load atomic [{MemoryFlags " "}*; text="memory flags"] [Type], [PointerType] [Value] [{AtomicFlags " "}*; text="atomicity flags"] [AtomicOrdering], [MemoryAlignment]]
 
-  Store.Store                       = [store [MemoryFlags*] [Type] [Value], [PointerType] [Value] [MaybeMemoryAlignment*]]
-  Store.AtomicStore                 = [store atomic [MemoryFlags*] [Type] [Value], [PointerType] [Value] [AtomicFlags*] [AtomicOrdering], [MemoryAlignment]]
+  Store.Store                       = [store [{MemoryFlags " "}*; text="memory flags"] [Type] [Value], [PointerType] [Value] [MaybeMemoryAlignment?]]
+  Store.AtomicStore                 = [store atomic [{MemoryFlags " "}*; text="memory flags"] [Type] [Value], [PointerType] [Value] [{AtomicFlags " "}*; text="atomicity flags"] [AtomicOrdering], [MemoryAlignment]]
   
   
-  GetElementPtr.GetElementPtr       = [getelementptr [PointerFlags*] [Type], [PointerType] [Value] [MaybeIndex*]]
+  GetElementPtr.GetElementPtr       = [getelementptr [{PointerFlags " "}*; text="pointer flags"] [Type], [PointerType] [Value] [{MaybeIndex " "}*; text="indices"]]
   GetElementPtr.VectorElementPtr    = [getelementptr [Type], [VectorType] [Value], [VectorType] [Value]]
 
-  Instruction.ALLOCA                = [alloca [AllocFlags*] [Type] [MaybeNumElements?] [MaybeMemoryAlignment?]]
+  Instruction.ALLOCA                = [alloca [{AllocFlags " "}*; text="allocation flags"] [Type] [MaybeNumElements?] [MaybeMemoryAlignment?]]
 
   Instruction.LOAD                  = Load
   Instruction.STORE                 = Store
 
-  Instruction.FENCE                 = [fence [AtomicFlags*] [AtomicOrdering]]
-  Instruction.CMPXCHG               = [cmpxchg [FailureFlags*] [MemoryFlags*] [PointerType] [Value], [Type] [Value], [Type] [Value] [AtomicFlags*] [AtomicOrdering] [AtomicOrdering]]
-  Instruction.ATOMICRMW             = [atomicrmw [MemoryFlags*] [AtomicOperation] [PointerType] [Value], [Type] [Value] [AtomicFlags*] [AtomicOrdering]]
+  Instruction.FENCE                 = [fence [{AtomicFlags " "}*; text="atomicity flags"] [AtomicOrdering]]
+  Instruction.CMPXCHG               = [cmpxchg [{FailureFlags " "}*; text="failure flags"] [{MemoryFlags " "}*; text="memory flags"] [PointerType] [Value], [Type] [Value], [Type] [Value] [{AtomicFlags " "}*; text="atomicity flags"] [AtomicOrdering] [AtomicOrdering]]
+  Instruction.ATOMICRMW             = [atomicrmw [{MemoryFlags " "}*; text="memory flags"] [AtomicOperation] [PointerType] [Value], [Type] [Value] [{AtomicFlags " "}*; text="atomicity flags"] [AtomicOrdering]]
   
   Instruction.GETELEMENTPTR         = GetElementPtr
