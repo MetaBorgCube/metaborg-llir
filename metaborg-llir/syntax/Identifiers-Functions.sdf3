@@ -17,6 +17,10 @@ context-free syntax
   CallingConvention.Numbered                 = [cc [IntegerConstant]]
   
   Alignment.Alignment                        = [align [IntegerConstant]]
+  MaybeAlignment.MaybeAlignment              = [, [Alignment]]
+  
+  Section.Section                            = [section [StringConstant]]
+  MaybeSection.MaybeSection                  = [, [Section]]
 
   ParameterAttribute.ZEROEXT                 = [zeroext]
   ParameterAttribute.SIGNEXT                 = [signext]
