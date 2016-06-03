@@ -10,6 +10,6 @@
    Instruction.INSERTELEMENT  = [insertelement [VectorType] [Value], [IntegerType] [Value], [IntegerType] [Value]]
    Instruction.SHUFFLEVECTOR  = [shufflevector [VectorType] [Value], [VectorType] [Value], [VectorType] [VectorConstant]]
 
-   Instruction.EXTRACTVALUE   = [extractvalue [AggregateType] [Value], [{IntegerConstant ","}+]]
-   Instruction.INSERTVALUE    = [insertvalue [AggregateType] [Value], [Type] [Value], [{IntegerConstant ","}+]]
+   Instruction.EXTRACTVALUE   = [extractvalue [AggregateType] [Value], [{IntegerConstant ","}+; text="indices"]]
+   Instruction.INSERTVALUE    = [insertvalue [AggregateType] [Value], [Type] [Value], [{IntegerConstant ","}+; text="indices"]]
    
