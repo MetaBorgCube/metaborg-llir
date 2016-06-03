@@ -11,5 +11,5 @@ context-free syntax
   Label.LocalLabel  = LocalLabel
   Label.GlobalLabel = GlobalLabel
 
-  Value.Constant = Constant
-  Value.Label    = Label
+  Value.Constant    = Constant
+  Value.Label       = Label
