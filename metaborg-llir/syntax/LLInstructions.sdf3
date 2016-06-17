@@ -1,7 +1,7 @@
 module LLInstructions
 
 imports
-  LLExpressions
+  LLCommon
   LLInstructions-Aggregate
   LLInstructions-Binary
   LLInstructions-Conversion

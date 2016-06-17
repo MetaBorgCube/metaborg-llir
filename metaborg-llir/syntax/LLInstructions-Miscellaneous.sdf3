@@ -1,6 +1,7 @@
 module LLInstructions-Miscellaneous
 
 imports
+  LLCommon
   LLTypes
   LLExpressions
   LLIdentifiers-Math
