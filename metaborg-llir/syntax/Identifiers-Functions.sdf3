@@ -47,7 +47,7 @@ context-free syntax
   AllocSizeElementsParameter.AllocSizeElementsParameter = [, [IntegerConstant]]
 
   FunctionAttribute.ALIGNSTACK               = [alignstack([IntegerConstant])]
-  FunctionAttribute.ALLOCSIZE                = [allocsize([IntegerConstant][AllocSizeElementsParameter]?)]
+  FunctionAttribute.ALLOCSIZE                = [allocsize([IntegerConstant][AllocSizeElementsParameter?])]
   FunctionAttribute.ALWAYSINLINE             = [alwaysinline]
   FunctionAttribute.BUILTIN                  = [builtin]
   FunctionAttribute.COLD                     = [cold]

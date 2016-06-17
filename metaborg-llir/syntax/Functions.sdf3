@@ -21,15 +21,15 @@ context-free syntax
   ReturnType.Value                           = FirstClassType
   ReturnType.Void                            = [void]
 
-  FunctionFlags.FunctionFlags                = [[LinkageType]? [Visibility]? [DLLStorageClass]? [CallingConvention]? [UnnamedAddress]?]
-  FunctionAttrs.FunctionAttrs                = [[{FunctionAttribute " "}*;text="function attributes"] [Alignment]? [GCStrategy]? [Prefix]? [Prologue]?]
+  FunctionFlags.FunctionFlags                = [[LinkageType?] [Visibility?] [DLLStorageClass?] [CallingConvention?] [UnnamedAddress?]]
+  FunctionAttrs.FunctionAttrs                = [[{FunctionAttribute " "}*;text="function attributes"] [Alignment?] [GCStrategy?] [Prefix?] [Prologue?]]
   FunctionDeclaration.FunctionDeclaration    = [
-  	declare [FunctionFlags] [ReturnType] [ParameterAttribute]* [Label]([{FunctionParameterDecl ","}*; text="parameters"]) [FunctionAttrs]
+  	declare [FunctionFlags] [ReturnType] [ParameterAttribute*] [Label]([{FunctionParameterDecl ","}*; text="parameters"]) [FunctionAttrs]
   ]
   FunctionDefinition.FunctionDefinition      = [
-  	define [FunctionFlags] [ReturnType] [ParameterAttribute]* [Label]([{FunctionParameter ","}*; text="parameters"]) [FunctionAttrs] [Personality]? {
-  		[BasicBlock]*
+  	define [FunctionFlags] [ReturnType] [ParameterAttribute*] [Label]([{FunctionParameter ","}*; text="parameters"]) [FunctionAttrs] [Personality?] {
+  		[BasicBlock*]
   	}
   ]
+  FunctionDeclaration.Simple = [declare void [ParameterAttribute*] [Label]()]
 
-   

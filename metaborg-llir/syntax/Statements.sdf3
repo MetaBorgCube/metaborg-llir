@@ -11,10 +11,10 @@ context-free syntax
   ConstantOrGlobal.Constant               = [constant]
   ConstantOrGlobal.Global                 = [global]
 
-  GlobalFlags.GlobalFlags                 = [[LinkageType]? [Visibility]? [DLLStorageClass]? [ThreadStorageModel]? [UnnamedAddress]?]
-  GlobalVariableFlags.GlobalVariableFlags = [[GlobalFlags] [AddressSpace]? [ExternallyInitialized]?]
+  GlobalFlags.GlobalFlags                 = [[LinkageType?] [Visibility?] [DLLStorageClass?] [ThreadStorageModel?] [UnnamedAddress?]]
+  GlobalVariableFlags.GlobalVariableFlags = [[GlobalFlags] [AddressSpace?] [ExternallyInitialized?]]
   GlobalVariableAttrs.GlobalVariableAttrs = [[MaybeSection?] [MaybeAlignment?]]
-  IFuncFlags.IFuncFlags                   = [[LinkageType]? [Visibility]?]
+  IFuncFlags.IFuncFlags                   = [[LinkageType?] [Visibility?]]
 
   TopLevelStatement.FunctionDeclaration   = FunctionDeclaration
   TopLevelStatement.FunctionDefinition    = FunctionDefinition
@@ -25,7 +25,7 @@ context-free syntax
   	[GlobalLabel] = [GlobalFlags] alias [Type], [PointerType] [GlobalLabel]
   ]
   TopLevelStatement.GlobalVariable        = [
-  	[GlobalLabel] = [GlobalVariableFlags] [ConstantOrGlobal] [Type] [Constant]? [GlobalVariableAttrs]
+  	[GlobalLabel] = [GlobalVariableFlags] [ConstantOrGlobal] [Type] [Constant?] [GlobalVariableAttrs]
   ]
   TopLevelStatement.IFunc                 = [
   	[GlobalLabel] = [IFuncFlags] ifunc [FunctionType], [PointerType] [GlobalLabel]

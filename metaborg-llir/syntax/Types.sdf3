@@ -2,6 +2,7 @@ module Types
 
 imports
   Common
+  Expressions
 
 context-free syntax
   OpaqueType.OpaqueType          = [opaque]
@@ -40,8 +41,10 @@ context-free syntax
   FirstClassType.TokenType       = TokenType
   FirstClassType.MetadataType    = MetadataType
   FirstClassType.StructType      = StructType
+  FirstClassType.UserType        = Label
   
   Type.VoidType                  = VoidType
   Type.FunctionType              = FunctionType
   Type.FirstClassType            = FirstClassType
+  Type.AggregateType             = AggregateType
   
