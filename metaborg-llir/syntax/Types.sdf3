@@ -26,7 +26,10 @@ context-free syntax
   StructType.StructType          = [{ [{Type ","}*; text="members"] }]
   StructType.PackedStructType    = [<{ [{Type ","}*; text="members"] }>]
 
-  FunctionType.FunctionType      = [[Type; text="return type"] ([{Type ","}*; text="parameters"])]
+  FunctionParamType.Type         = Type
+  FunctionParamType.VarArg       = [...]
+
+  FunctionType.FunctionType      = [[Type; text="return type"] ([{FunctionParamType ","}*; text="parameters"])]
 
   SingleValueType.IntegerType    = IntegerType
   SingleValueType.PointerType    = PointerType
