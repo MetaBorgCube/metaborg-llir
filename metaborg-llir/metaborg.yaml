@@ -1,5 +1,5 @@
 ---
-id: org.example:metaborgllir:0.1.0-SNAPSHOT
+id: nl.tudelft.ewi:metaborgllir:0.1.0-SNAPSHOT
 name: metaborg-llir
 metaborgVersion: 2.0.0-beta1
 dependencies:
