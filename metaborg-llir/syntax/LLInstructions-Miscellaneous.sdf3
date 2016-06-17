@@ -1,0 +1,13 @@
+module LLInstructions-Miscellaneous
+
+imports
+  LLTypes
+  LLExpressions
+  LLIdentifiers-Math
+
+context-free syntax
+  LLPhiTarget.LLPhiTarget = <[<LLValue>, <LLLabel>]>
+
+  LLInstruction.LLICMP    = [icmp [LLCompareType] [LLSingleValueType] [LLValue], [LLValue]]
+  LLInstruction.LLPHI     = [phi [LLType] [{LLPhiTarget ","}+; text="targets"]]
+  LLInstruction.LLSELECT  = [select [LLType] [LLValue], [LLType] [LLValue], [LLType] [LLValue]]

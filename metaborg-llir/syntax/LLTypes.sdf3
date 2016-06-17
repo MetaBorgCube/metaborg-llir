@@ -1,0 +1,53 @@
+module LLTypes
+
+imports
+  LLCommon
+  LLExpressions
+
+context-free syntax
+  LLOpaqueType.LLOpaqueType          = [opaque]
+  
+  LLVoidType.LLVoidType              = [void]
+  
+  LLLabelType.LLLabelType            = [label]
+  
+  LLTokenType.LLTokenType            = [token]
+  
+  LLMetadataType.LLMetadataType      = [metadata]
+  
+  LLIntegerType.LLIntegerType        = [i[INT]]
+
+  LLPointerType.LLPointerType        = [[LLType]*]
+
+  LLVectorType.LLVectorType          = [<[INT] x [LLIntegerType]>]
+  
+  LLArrayType.LLArrayType            = <[<INT> x <LLType>]>
+
+  LLStructType.LLStructType          = [{ [{LLType ","}*; text="members"] }]
+  LLStructType.LLPackedStructType    = [<{ [{LLType ","}*; text="members"] }>]
+
+  LLFunctionParamType.LLType         = LLType
+  LLFunctionParamType.LLVarArg       = [...]
+
+  LLFunctionType.LLFunctionType      = [[LLType; text="return type"] ([{LLFunctionParamType ","}*; text="parameters"])]
+
+  LLSingleValueType.LLIntegerType    = LLIntegerType
+  LLSingleValueType.LLPointerType    = LLPointerType
+  LLSingleValueType.LLVectorType     = LLVectorType
+
+  LLAggregateType.LLArrayType        = LLArrayType
+  LLAggregateType.LLStructType       = LLStructType
+  LLAggregateType.LLOpaqueType       = LLOpaqueType
+
+  LLFirstClassType.LLSingleValueType = LLSingleValueType
+  LLFirstClassType.LLLabelType       = LLLabelType
+  LLFirstClassType.LLTokenType       = LLTokenType
+  LLFirstClassType.LLMetadataType    = LLMetadataType
+  LLFirstClassType.LLStructType      = LLStructType
+  LLFirstClassType.LLUserType        = LLLabel
+  
+  LLType.LLVoidType                  = LLVoidType
+  LLType.LLFunctionType              = LLFunctionType
+  LLType.LLFirstClassType            = LLFirstClassType
+  LLType.LLAggregateType             = LLAggregateType
+  

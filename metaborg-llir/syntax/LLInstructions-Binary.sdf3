@@ -1,0 +1,25 @@
+module LLInstructions-Binary
+
+imports
+  LLTypes
+  LLExpressions
+  LLIdentifiers-Math
+
+context-free syntax
+  LLInstruction.LLADD  = [add [{LLWrapFlags " "}*; text="flags"] [LLType] [LLValue], [LLValue]]
+  LLInstruction.LLSUB  = [sub [{LLWrapFlags " "}*; text="flags"] [LLType] [LLValue], [LLValue]]
+  LLInstruction.LLMUL  = [mul [{LLWrapFlags " "}*; text="flags"] [LLType] [LLValue], [LLValue]]
+
+  LLInstruction.LLUDIV = [udiv [{LLPrecisionFlags " "}*; text="flags"] [LLType] [LLValue], [LLValue]]
+  LLInstruction.LLSDIV = [sdiv [{LLPrecisionFlags " "}*; text="flags"] [LLType] [LLValue], [LLValue]]
+
+  LLInstruction.LLUREM = [urem [LLType] [LLValue], [LLValue]]
+  LLInstruction.LLSREM = [srem [LLType] [LLValue], [LLValue]]
+  
+  LLInstruction.LLSHL  = [shl [{LLWrapFlags " "}*; text="flags"] [LLType] [LLValue], [LLValue]]
+  LLInstruction.LLLSHR = [lshr [{LLWrapFlags " "}*; text="flags"] [LLType] [LLValue], [LLValue]]
+  LLInstruction.LLASHR = [ashr [{LLWrapFlags " "}*; text="flags"] [LLType] [LLValue], [LLValue]]
+  
+  LLInstruction.LLAND  = [and [LLType] [LLValue], [LLValue]]
+  LLInstruction.LLOR   = [or [LLType] [LLValue], [LLValue]]
+  LLInstruction.LLXOR  = [xor [LLType] [LLValue], [LLValue]]

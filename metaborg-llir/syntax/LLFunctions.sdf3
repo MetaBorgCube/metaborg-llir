@@ -1,0 +1,36 @@
+module LLFunctions
+
+imports
+  LLCommon
+  LLConstants
+  LLTypes
+  LLExpressions
+  LLIdentifiers-Functions
+  LLInstructions
+
+context-free syntax
+  LLFunctionArgument.LLFunctionArgument          = [[LLFirstClassType] [LLValue]]
+  
+  LLFunctionParameterDecl.LLFunctionParameter    = [[LLFirstClassType] [{LLParameterAttribute " "}*; text="parameter attributes"]]
+  LLFunctionParameterDecl.LLVariableParameter    = [...]
+
+  LLFunctionParameter.LLFunctionParameter        = [[LLFirstClassType] [LLLabel] [{LLParameterAttribute " "}*; text="parameter attributes"]]
+
+  LLReturnValue.LLValue                          = [[LLFirstClassType] [LLValue]]
+  LLReturnValue.LLVoid                           = [void]
+  
+  LLReturnType.LLValue                           = LLFirstClassType
+  LLReturnType.LLVoid                            = [void]
+
+  LLFunctionFlags.LLFunctionFlags                = [[LLLinkageType?] [LLVisibility?] [LLDLLStorageClass?] [LLCallingConvention?] [LLUnnamedAddress?]]
+  LLFunctionAttrs.LLFunctionAttrs                = [[{LLFunctionAttribute " "}*;text="function attributes"] [LLAlignment?] [LLGCStrategy?] [LLPrefix?] [LLPrologue?]]
+  LLFunctionDeclaration.LLFunctionDeclaration    = [
+  	declare [LLFunctionFlags] [LLReturnType] [LLParameterAttribute*] [LLLabel]([{LLFunctionParameterDecl ","}*; text="parameters"]) [LLFunctionAttrs]
+  ]
+  LLFunctionDefinition.LLFunctionDefinition      = [
+  	define [LLFunctionFlags] [LLReturnType] [LLParameterAttribute*] [LLLabel]([{LLFunctionParameter ","}*; text="parameters"]) [LLFunctionAttrs] [LLPersonality?] {
+  		[LLBasicBlock*]
+  	}
+  ]
+  LLFunctionDeclaration.LLSimple = [declare void [LLParameterAttribute*] [LLLabel]()]
+

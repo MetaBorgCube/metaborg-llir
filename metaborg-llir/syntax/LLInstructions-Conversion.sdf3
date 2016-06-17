@@ -1,0 +1,15 @@
+module LLInstructions-Conversion
+
+imports
+  LLTypes
+  LLExpressions
+
+context-free syntax
+  LLInstruction.LLTRUNC         = [trunc [LLType] [LLValue] to [LLType]]
+  LLInstruction.LLZEXT          = [zext [LLType] [LLValue] to [LLType]]
+  LLInstruction.LLSEXT          = [sext [LLType] [LLValue] to [LLType]]
+
+  LLInstruction.LLPTRTOINT      = [ptrtoint [LLType] [LLValue] to [LLType]]
+  LLInstruction.LLINTTOPTR      = [inttoptr [LLType] [LLValue] to [LLType]]
+  LLInstruction.LLBITCAST       = [bitcast [LLType] [LLValue] to [LLType]]
+  LLInstruction.LLADDRSPACECAST = [addrspacecast [LLType] [LLValue] to [LLType]]

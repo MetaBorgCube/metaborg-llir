@@ -1,0 +1,36 @@
+module LLStatements
+
+imports
+  LLConstants
+  LLTypes
+  LLExpressions
+  LLIdentifiers-Functions
+  LLFunctions
+
+context-free syntax
+  LLConstantOrGlobal.LLConstant               = [constant]
+  LLConstantOrGlobal.LLGlobal                 = [global]
+
+  LLGlobalFlags.LLGlobalFlags                 = [[LLLinkageType?] [LLVisibility?] [LLDLLStorageClass?] [LLThreadStorageModel?] [LLUnnamedAddress?]]
+  LLGlobalVariableFlags.LLGlobalVariableFlags = [[LLGlobalFlags] [LLAddressSpace?] [LLExternallyInitialized?]]
+  LLGlobalVariableAttrs.LLGlobalVariableAttrs = [[LLMaybeSection?] [LLMaybeAlignment?]]
+  LLIFuncFlags.LLIFuncFlags                   = [[LLLinkageType?] [LLVisibility?]]
+
+  LLTopLevelStatement.LLFunctionDeclaration   = LLFunctionDeclaration
+  LLTopLevelStatement.LLFunctionDefinition    = LLFunctionDefinition
+  LLTopLevelStatement.LLInlineAssembly          = [module asm [LLStringConstant]]
+  LLTopLevelStatement.LLTargetTriple          = [target triple = [LLStringConstant]]
+  LLTopLevelStatement.LLTargetLayout          = [target datalayout = [LLStringConstant]]
+  LLTopLevelStatement.LLGlobalAlias           = [
+  	[LLGlobalLabel] = [LLGlobalFlags] alias [LLType], [LLPointerType] [LLGlobalLabel]
+  ]
+  LLTopLevelStatement.LLGlobalVariable        = [
+  	[LLGlobalLabel] = [LLGlobalVariableFlags] [LLConstantOrGlobal] [LLType] [LLConstant?] [LLGlobalVariableAttrs]
+  ]
+  LLTopLevelStatement.LLIFunc                 = [
+  	[LLGlobalLabel] = [LLIFuncFlags] ifunc [LLFunctionType], [LLPointerType] [LLGlobalLabel]
+  ]
+  LLTopLevelStatement.LLTypeDefinition       = [
+  	[LLLocalLabel] = type [LLAggregateType]
+  ]
+  

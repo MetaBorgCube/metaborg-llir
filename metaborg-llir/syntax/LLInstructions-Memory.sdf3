@@ -1,0 +1,35 @@
+module LLInstructions-Memory
+
+imports
+  LLTypes
+  LLConstants
+  LLExpressions
+  LLIdentifiers-Memory
+
+context-free syntax
+  LLNumElements.LLNumElements           = [[LLIntegerType] [LLValue]]
+  LLMaybeNumElements.LLMaybeNumElements = [, [LLNumElements]]
+
+  LLIndex.LLIndex                       = [[LLIntegerType] [LLValue]]
+  LLMaybeIndex.LLMaybeIndex             = [, [LLIndex]]
+
+  LLLoad.LLLoad                         = [load [{LLMemoryFlags " "}*; text="memory flags"] [LLType], [LLPointerType] [LLValue] [LLMaybeMemoryAlignment?]]
+  LLLoad.LLAtomicLoad                   = [load atomic [{LLMemoryFlags " "}*; text="memory flags"] [LLType], [LLPointerType] [LLValue] [{LLAtomicFlags " "}*; text="atomicity flags"] [LLAtomicOrdering], [LLMemoryAlignment]]
+
+  LLStore.LLStore                       = [store [{LLMemoryFlags " "}*; text="memory flags"] [LLType] [LLValue], [LLPointerType] [LLValue] [LLMaybeMemoryAlignment?]]
+  LLStore.LLAtomicStore                 = [store atomic [{LLMemoryFlags " "}*; text="memory flags"] [LLType] [LLValue], [LLPointerType] [LLValue] [{LLAtomicFlags " "}*; text="atomicity flags"] [LLAtomicOrdering], [LLMemoryAlignment]]
+  
+  
+  LLGetElementPtr.LLGetElementPtr       = [getelementptr [{LLPointerFlags " "}*; text="pointer flags"] [LLType], [LLPointerType] [LLValue] [{LLMaybeIndex " "}*; text="indices"]]
+  LLGetElementPtr.LLVectorElementPtr    = [getelementptr [LLType], [LLVectorType] [LLValue], [LLVectorType] [LLValue]]
+
+  LLInstruction.LLALLOCA                = [alloca [{LLAllocFlags " "}*; text="allocation flags"] [LLType] [LLMaybeNumElements?] [LLMaybeMemoryAlignment?]]
+
+  LLIinstruction.LLLOAD                  = LLLoad
+  LLIinstruction.LLSTORE                 = LLStore
+
+  LLIinstruction.LLFENCE                 = [fence [{LLAtomicFlags " "}*; text="atomicity flags"] [LLAtomicOrdering]]
+  LLIinstruction.LLCMPXCHG               = [cmpxchg [{LLFailureFlags " "}*; text="failure flags"] [{LLMemoryFlags " "}*; text="memory flags"] [LLPointerType] [LLValue], [LLType] [LLValue], [LLType] [LLValue] [{LLAtomicFlags " "}*; text="atomicity flags"] [LLAtomicOrdering] [LLAtomicOrdering]]
+  LLIinstruction.LLATOMICRMW             = [atomicrmw [{LLMemoryFlags " "}*; text="memory flags"] [LLAtomicOperation] [LLPointerType] [LLValue], [LLType] [LLValue] [{LLAtomicFlags " "}*; text="atomicity flags"] [LLAtomicOrdering]]
+  
+  LLIinstruction.LLGETELEMENTPTR         = LLGetElementPtr

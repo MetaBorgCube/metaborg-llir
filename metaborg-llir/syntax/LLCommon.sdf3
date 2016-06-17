@@ -1,4 +1,4 @@
-module Common
+module LLCommon
 
 lexical syntax
   INT            = "0"
@@ -13,6 +13,13 @@ lexical syntax
   NewLineEOF     = [\n\r] 
   NewLineEOF     = EOF 
   EOF            =  
+
+context-free syntax
+  LLLocalLabel        = LOCALLABEL
+  LLGlobalLabel       = GLOBALLABEL
+
+  LLLabel.LLLocalLabel  = LLLocalLabel
+  LLLabel.LLGlobalLabel = LLGlobalLabel
 
 lexical restrictions
   // Ensure greedy matching for lexicals

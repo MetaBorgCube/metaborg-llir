@@ -1,0 +1,14 @@
+module LLInstructions
+
+imports
+  LLExpressions
+  LLInstructions-Aggregate
+  LLInstructions-Binary
+  LLInstructions-Conversion
+  LLInstructions-Flow
+  LLInstructions-Memory
+  LLInstructions-Miscellaneous
+
+context-free syntax
+  LLBasicBlock.LLAssignment  = [[LLLabel] = [LLInstruction]]
+  LLBasicBlock.LLInstruction = LLInstruction

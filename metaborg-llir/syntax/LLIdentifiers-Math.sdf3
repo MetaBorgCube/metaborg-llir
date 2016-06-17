@@ -1,0 +1,25 @@
+module LLIdentifiers-Math
+
+context-free syntax
+  LLWrapFlags.LLNoUnsignedWrap  = [nuw]
+  LLWrapFlags.LLNoSignedWrap    = [nsw]
+
+  LLPrecisionFlags.LLExactFlag  = [exact]
+  
+  LLFastMathFlags.LLNNAN        = [nnan]
+  LLFastMathFlags.LLNINF        = [ninf]
+  LLFastMathFlags.LLNSZ         = [nsz]
+  LLFastMathFlags.LLARCP        = [arcp]
+  LLFastMathFlags.LLFAST        = [fast]
+
+  LLCompareType.LLEQ            = [eq]
+  LLCompareType.LLNE            = [ne]
+  LLCompareType.LLUGT           = [ugt]
+  LLCompareType.LLUGE           = [uge]
+  LLCompareType.LLULT           = [ult]
+  LLCompareType.LLULE           = [ule]
+  LLCompareType.LLSGT           = [sgt]
+  LLCompareType.LLSGE           = [sge]
+  LLCompareType.LLSLT           = [slt]
+  LLCompareType.LLSLE           = [sle]
+  

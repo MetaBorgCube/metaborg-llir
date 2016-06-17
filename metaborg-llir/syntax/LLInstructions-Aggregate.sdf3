@@ -1,0 +1,15 @@
+ module LLInstructions-Aggregate
+ 
+ imports
+   LLTypes
+   LLConstants
+   LLExpressions
+ 
+ context-free syntax
+   LLInstruction.LLEXTRACTELEMENT = [extractelement [LLVectorType] [LLValue], [LLIntegerType] [LLValue]]
+   LLInstruction.LLINSERTELEMENT  = [insertelement [LLVectorType] [LLValue], [LLIntegerType] [LLValue], [LLIntegerType] [LLValue]]
+   LLInstruction.LLSHUFFLEVECTOR  = [shufflevector [LLVectorType] [LLValue], [LLVectorType] [LLValue], [LLVectorType] [LLVectorConstant]]
+
+   LLInstruction.LLEXTRACTVALUE   = [extractvalue [LLAggregateType] [LLValue], [{LLIntegerConstant ","}+; text="indices"]]
+   LLInstruction.LLINSERTVALUE    = [insertvalue [LLAggregateType] [LLValue], [LLType] [LLValue], [{LLIntegerConstant ","}+; text="indices"]]
+   

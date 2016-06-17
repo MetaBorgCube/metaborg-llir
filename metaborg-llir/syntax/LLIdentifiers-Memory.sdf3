@@ -1,0 +1,34 @@
+module LLIdentifiers-Memory
+
+imports
+  LLConstants
+
+context-free syntax
+  LLMemoryAlignment.LLMemoryAlignment           = [align [LLIntegerConstant]]
+  LLMaybeMemoryAlignment.LLMaybeMemoryAlignment = [, [LLMemoryAlignment]]
+
+  LLAllocFlags.LLInAlloca                       = [inalloca]
+  LLMemoryFlags.LLVolatile                      = [volatile]
+  LLAtomicFlags.LLSingleThread                  = [singlethread]
+  LLFailureFlags.LLWeak                         = [weak]
+  
+  LLAtomicOrdering.LLUnordered                  = [unordered]
+  LLAtomicOrdering.LLMonotonic                  = [monotonoic]
+  LLAtomicOrdering.LLAcquire                    = [acquire]
+  LLAtomicOrdering.LLRelease                    = [release]
+  LLAtomicOrdering.LLAcquireRelease             = [acq_rel]
+  LLAtomicOrdering.LLSequentiallyConsistent     = [seq_cst]
+  
+  LLAtomicOperation.LLXCHG                      = [xchg]
+  LLAtomicOperation.LLADD                       = [add]
+  LLAtomicOperation.LLSUB                       = [sub]
+  LLAtomicOperation.LLAND                       = [and]
+  LLAtomicOperation.LLNAND                      = [nand]
+  LLAtomicOperation.LLOR                        = [or]
+  LLAtomicOperation.LLXOR                       = [xor]
+  LLAtomicOperation.LLMAX                       = [max]
+  LLAtomicOperation.LLMIN                       = [min]
+  LLAtomicOperation.LLUMAX                      = [umax]
+  LLAtomicOperation.LLUMIN                      = [umin]
+
+  LLPointerFlags.LLInbound                      = [inbound]

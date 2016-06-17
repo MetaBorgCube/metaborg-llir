@@ -1,0 +1,24 @@
+module LLInstructions-Flow
+
+imports
+  LLCommon
+  LLTypes
+  LLConstants
+  LLIdentifiers-Functions
+  LLIdentifiers-Math
+  LLFunctions
+  
+context-free syntax
+  LLLabelTarget.LLLabelTarget   = [label [LLLabel]]
+
+  LLBranchTarget.LLConditional  = [i1 [LLValue], label [LLLabel], label [LLLabel]]
+  LLBranchTarget.LLLabel        = LLLabelTarget
+
+  LLSwitchTarget.LLSwitchTarget = [[LLIntegerType] [LLValue], label [LLLabel]]
+
+  Instruction.LLRET           = [ret [LLReturnValue]]
+  Instruction.LLBR            = [br [LLBranchTarget]]
+  Instruction.LLCALL          = [[LLCallOptimization?] call [{LLFastMathFlags " "}*; text="fast math flags"] [LLCallingConvention?] [{LLParameterAttribute " "}*; text="return type attributes"] [LLType] [LLPointerType?] [LLValue]([{LLFunctionArgument ","}*; text="arguments"]) [{LLFunctionCallAttribute " "}*; text="function call attributes"]]
+  Instruction.LLSWITCH        = <switch <LLIntegerType> <LLValue>, label <LLLabel> [ <{LLSwitchTarget " "}*; text="switch targets"> ]>
+  Instruction.LLINDIRECTBR    = <indirectbr <LLPointerType> <LLLocalLabel>, [ <{LLLabelTarget ","}*; text="possible targets"> ]>
+  Instruction.LLUNREACHABLE   = [unreachable]

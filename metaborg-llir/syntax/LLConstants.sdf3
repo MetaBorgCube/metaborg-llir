@@ -1,0 +1,42 @@
+module LLConstants
+
+imports
+  LLCommon
+  LLTypes
+
+context-free syntax
+  LLBooleanConstant.LLTrue                    = [true]
+  LLBooleanConstant.LLFalse                   = [false]
+
+  LLIntegerConstant.LLIntegerConstant         = INT
+  
+  LLNullConstant.LLNullConstant               = [null]
+  LLTokenConstant.LLTokenConstant             = [none]
+  
+  LLZeroInitializer.LLZeroInitializer         = [zeroinitializer]
+
+  LLStructureConstant.LLStructureConstant     = [{ [{LLConstantElement ","}*; text="members"] }]
+  
+  LLArrayConstant.LLArrayConstant             = <[ <{LLConstantElement ","}*; text="members"> ]>
+  LLArrayStringConstant.LLArrayStringConstant = [c[STRING]]
+  
+  LLVectorConstant.LLVectorConstant           = [< [{LLConstantElement ","}*; text="members"] >]
+
+  LLStringConstant.LLStringConstant           = STRING
+
+  LLSimpleConstant.LLBooleanConstant          = LLBooleanConstant
+  LLSimpleConstant.LLIntegerConstant          = LLIntegerConstant
+  LLSimpleConstant.LLNullPointerConstant      = LLNullConstant
+  LLSimpleConstant.LLTokenConstant            = LLTokenConstant
+  
+  LLConstantElement.LLConstantElement         = [[LLType] [LLConstant]]
+
+  LLComplexConstant.LLStructureConstant       = LLStructureConstant
+  LLComplexConstant.LLArrayConstant           = LLArrayConstant
+  LLComplexConstant.LLArrayStringConstant     = LLArrayStringConstant
+  LLComplexConstant.LLVectorConstant          = LLVectorConstant
+  LLComplexConstant.LLZeroInitializer         = LLZeroInitializer
+
+  LLConstant.LLSimpleConstant                 = LLSimpleConstant
+  LLConstant.LLComplexConstant                = LLComplexConstant
+  LLConstant.LLStringConstant                 = LLStringConstant

@@ -1,19 +1,19 @@
 module metaborg-llir
 
 imports
-  Common
-  Types
-  Constants
-  Instructions
-  Expressions
-  Statements
+  LLCommon
+  LLTypes
+  LLConstants
+  LLInstructions
+  LLExpressions
+  LLStatements
 
 template options  
   tokenize : ",()[]<>{}*"
 
 context-free start-symbols
-  Start
+  LLStart
 
 context-free syntax
-  Start = Module
-  Module.Module = <<{TopLevelStatement "\n"}*; text="statements">>
+  LLStart = LLModule
+  LLModule.LLModule = <<{LLTopLevelStatement "\n"}*; text="statements">>

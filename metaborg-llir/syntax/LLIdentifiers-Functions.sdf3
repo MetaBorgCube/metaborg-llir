@@ -1,0 +1,129 @@
+module LLIdentifiers-Functions
+
+imports
+  LLCommon
+  LLConstants
+  LLTypes
+  LLExpressions
+
+context-free syntax
+  LLCallingConvention.LLCCC                      = [ccc]
+  LLCallingConvention.LLFASTCC                   = [fastcc]
+  LLCallingConvention.LLCOLDCCC                  = [coldcc]
+  LLCallingConvention.LLWEBKIT_JSCC              = [webkit_jscc]
+  LLCallingConvention.LLANYREGCC                 = [anyregcc]
+  LLCallingConvention.LLPRESERVE_MOSTCC          = [preserve_mostcc]
+  LLCallingConvention.LLCXX_FAST_TLSCC           = [cxx_fast_tlscc]
+  LLCallingConvention.LLSWIFTCC                  = [swiftcc]
+  LLCallingConvention.LLNumbered                 = [cc [LLIntegerConstant]]
+  
+  LLAlignment.LLAlignment                        = [align [LLIntegerConstant]]
+  LLMaybeAlignment.LLMaybeAlignment              = [, [LLAlignment]]
+  
+  LLSection.LLSection                            = [section [LLStringConstant]]
+  LLMaybeSection.LLMaybeSection                  = [, [LLSection]]
+
+  LLParameterAttribute.LLZEROEXT                 = [zeroext]
+  LLParameterAttribute.LLSIGNEXT                 = [signext]
+  LLParameterAttribute.LLINREG                   = [inreg]
+  LLParameterAttribute.LLBYVAL                   = [byval]
+  LLParameterAttribute.LLINALLOCA                = [inalloca]
+  LLParameterAttribute.LLSRET                    = [sret]
+  LLParameterAttribute.LLALIGN                   = LLAlignment
+  LLParameterAttribute.LLNOALIAS                 = [noalias]
+  LLParameterAttribute.LLNOCAPTURE               = [nocapture]
+  LLParameterAttribute.LLNEST                    = [nest]
+  LLParameterAttribute.LLRETURNED                = [returned]
+  LLParameterAttribute.LLNONNULL                 = [nonnull]
+  LLParameterAttribute.LLDEREFERENCEABLE         = [dereferenceable([LLIntegerConstant])]
+  LLParameterAttribute.LLDEREFERENCEABLE_OR_NULL = [dereferenceable_or_null([LLIntegerConstant])]
+  LLParameterAttribute.LLSWIFTSELF               = [swiftself]
+  LLParameterAttribute.LLSWIFTERROR              = [swifterror]
+
+  LLFunctionCallAttribute.LLNORETURN             = [noreturn]
+  LLFunctionCallAttribute.LLNOREWIND             = [nounwind]
+  LLFunctionCallAttribute.LLREADONLY             = [readonly]
+  LLFunctionCallAttribute.LLREADNONE             = [readnone]
+
+  LLAllocSizeElementsParameter.LLAllocSizeElementsParameter = [, [LLIntegerConstant]]
+
+  LLFunctionAttribute.LLALIGNSTACK               = [alignstack([LLIntegerConstant])]
+  LLFunctionAttribute.LLALLOCSIZE                = [allocsize([LLIntegerConstant][LLAllocSizeElementsParameter?])]
+  LLFunctionAttribute.LLALWAYSINLINE             = [alwaysinline]
+  LLFunctionAttribute.LLBUILTIN                  = [builtin]
+  LLFunctionAttribute.LLCOLD                     = [cold]
+  LLFunctionAttribute.LLCONVERGENT               = [convergent]
+  LLFunctionAttribute.LLINACCESSIBLEMEMONLY      = [inaccessiblememonly]
+  LLFunctionAttribute.LLINACCESSIBLE_MEM_OR_ARGMEMONLY = [inaccessiblemem_or_argmemonly]
+  LLFunctionAttribute.LLINLINEHINT               = [inlinehint]
+  LLFunctionAttribute.LLJUMPTABLE                = [jumptable]
+  LLFunctionAttribute.LLMINSIZE                  = [minsize]
+  LLFunctionAttribute.LLNAKED                    = [naked]
+  LLFunctionAttribute.LLNOBUILTIN                = [nobuiltin]
+  LLFunctionAttribute.LLNODUPLICATE              = [noduplicate]
+  LLFunctionAttribute.LLNOIMPLICITFLOAT          = [noimplicitfloat]
+  LLFunctionAttribute.LLNOINLINE                 = [noinline]
+  LLFunctionAttribute.LLNONLAZYBIND              = [nonlazybind]
+  LLFunctionAttribute.LLNOREDZONE                = [noredzone]
+  LLFunctionAttribute.LLNORETURN                 = [noreturn]
+  LLFunctionAttribute.LLNORECURSE                = [norecurse]
+  LLFunctionAttribute.LLNOUNWIND                 = [nounwind]
+  LLFunctionAttribute.LLOPTNONE                  = [optnone]
+  LLFunctionAttribute.LLOPTSIZE                  = [optsize]
+  LLFunctionAttribute.LLPATCHABLE-FUNCTION       = ["patchable-function"=[LLStringConstant]]
+  LLFunctionAttribute.LLREADNONE                 = [readnone]
+  LLFunctionAttribute.LLREADONLY                 = [readonly]
+  LLFunctionAttribute.LLARGMEMONLY               = [argmemonly]
+  LLFunctionAttribute.LLRETURNS_TWICE            = [returns_twice]
+  LLFunctionAttribute.LLSAFESTACK                = [safestack]
+  LLFunctionAttribute.LLSANITIZE_ADDRESS         = [sanitize_address]
+  LLFunctionAttribute.LLSANITIZE_THREAD          = [sanitize_thread]
+  LLFunctionAttribute.LLSSP                      = [ssp]
+  LLFunctionAttribute.LLSSPREQ                   = [sspreq]
+  LLFunctionAttribute.LLSSPSTRONG                = [sspstrong]
+  LLFunctionAttribute.LLTHUNK                    = ["thunk"]
+  LLFunctionAttribute.LLUWTABLE                  = [uwtable]
+  
+  LLGCStrategy.LLGCStrategy                      = [gc [LLStringConstant]]
+
+  LLLinkageType.LLPRIVATE                        = [private]
+  LLLinkageType.LLINTERNAL                       = [internal]
+  LLLinkageType.LLAVAILABLE_EXTERNALLY           = [available_externally]
+  LLLinkageType.LLLINKONCE                       = [linkonce]
+  LLLinkageType.LLWEAK                           = [weak]
+  LLLinkageType.LLCOMMON                         = [common]
+  LLLinkageType.LLAPPENDING                      = [appending]
+  LLLinkageType.LLEXTERN_WEAK                    = [extern_weak]
+  LLLinkageType.LLLINKONCE_ODR                   = [linkonce_odr]
+  LLLinkageType.LLWEAK_ODR                       = [weak_odr]
+  LLLinkageType.LLEXTERNAL                       = [external]
+  
+  LLCallOptimization.LLTail                      = [tail]
+  LLCallOptimization.LLMustTail                  = [musttail]
+  LLCallOptimization.LLNoTail                    = [notail]
+
+  LLVisibility.LLDEFAULT						 = [default]
+  LLVisibility.LLHIDDEN							 = [hidden]
+  LLVisibility.LLPROTECTED						 = [protected]
+  
+  LLDLLStorageClass.LLDLLIMPORT					 = [dllimport]
+  LLDLLStorageClass.LLDLLEXPORT					 = [dllexport]
+
+  LLUnnamedAddress.LLUNNAMED_ADDR                = [unnamed_addr]
+
+  LLPersonality.LLPersonality                    = [personality [LLLabel]]
+
+  LLPrefix.LLPrefix                              = [prefix [LLType] [LLValue]]
+  
+  LLPrologue.LLPrologue                          = [prologue [LLType] [LLValue]]
+
+  LLTLSModel.LLLOCALDYNAMIC                      = [localdynamic]
+  LLTLSModel.LLINITIALEXEC                       = [initialexec]
+  LLTLSModel.LLLOCALEXEC                         = [localexec]
+
+  LLThreadStorageModel.LLThreadLocal             = [thread_local]
+  LLThreadStorageModel.LLTLSModel                = [thread_local [LLTLSModel]]
+
+  LLAddressSpace.LLAddressSpace                  = [addressspace([LLIntegerConstant])]
+
+  LLExternallyInitialized.LLEXTERNALLY_INITIALIZED = [externally_initialized]
