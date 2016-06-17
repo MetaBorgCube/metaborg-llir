@@ -20,3 +20,6 @@ lexical restrictions
   
   // EOF may not be followed by any char
   EOF           -/- ~[]
+
+context-free restrictions
+  LAYOUT? -/- [\ \t\n\r\;]
